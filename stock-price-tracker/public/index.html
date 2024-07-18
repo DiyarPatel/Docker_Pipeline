@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Stock Prices</title>
+</head>
+<body>
+  <h1>Real-Time Stock Prices</h1>
+  <ul id="prices"></ul>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    const socket = io();
+    const prices = document.getElementById('prices');
+
+    socket.on('stockPrice', (price) => {
+      const li = document.createElement('li');
+      li.textContent = `$${price}`;
+      prices.appendChild(li);
+    });
+  </script>
+</body>
+</html>
